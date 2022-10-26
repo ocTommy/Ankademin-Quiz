@@ -94,12 +94,12 @@ function getSelected() {
     return answer
 }
 function scoreGrad (){
-    const results = document.querySelector("#my-id");
-    if (score> maxscore *0.75){
+    const results = document.querySelector("#pId");
+    if (score> maxscore * 0.75){
         return resultText = "Mycket väl godkänt!"
     } else if (score> maxscore * 0.5){
         return resultText = "godkänd"
-    } else if (score< maxscore *0,5){ 
+    } else if (score< maxscore *0.5){ 
         return resultText = "underkänd"
     }
 }
@@ -117,7 +117,7 @@ submitBtn.addEventListener('click', () => {
 
            quiz.innerHTML = `
            <h2>Your score is ${score}/${quizData.length} </h2>
-           <p id="my-id">Du är ${resultText}<p>
+           <p id="pId">Du är ${resultText}<p>
            <button onclick="location.reload()">Reload</button>
            `
        }
@@ -125,3 +125,18 @@ submitBtn.addEventListener('click', () => {
 
 })
 
+
+let darkModeBtn = document.querySelector ("#dark-mode");
+let lightModeBtn = document.querySelector ("#light-mode");
+let resultsBtn = document.querySelector ("#results");
+
+
+darkModeBtn.addEventListener ("click", () => {
+    document.body.style.backgroundColor = 'darkslategray';
+    document.body.style.color = 'white';
+});
+
+lightModeBtn.addEventListener ("click", () => {
+    document.body.style.backgroundColor = 'lightgoldenrodyellow';
+    document.body.style.color = "black";
+});
