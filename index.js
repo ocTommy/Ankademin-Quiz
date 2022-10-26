@@ -71,6 +71,8 @@ let optionB = document.querySelector("#option-b")
 let submitBtn = document.querySelector("#submit")
 let currentQuiz = 0
 let score = 0
+let maxscore = 10
+let resultText =""
 loadQuiz()
 function loadQuiz() {
     deselectAnswers()
@@ -91,7 +93,18 @@ function getSelected() {
     })
     return answer
 }
+function scoreGrad (){
+    const results = document.querySelector("#my-id");
+    if (score> maxscore *0.75){
+        return resultText = "Mycket väl godkänt!"
+    } else if (score> maxscore * 0.5){
+        return resultText = "godkänd"
+    } else if (score< maxscore *0,5){ 
+        return resultText = "underkänd"
+    }
+}
 submitBtn.addEventListener('click', () => {
+    scoreGrad()
     const answer = getSelected()
     if(answer) {
        if(answer === quizData[currentQuiz].correct) {
@@ -100,14 +113,15 @@ submitBtn.addEventListener('click', () => {
        currentQuiz++
        if(currentQuiz < quizData.length) {
            loadQuiz()
-       } else {
+       } else { 
+
            quiz.innerHTML = `
            <h2>Your score is ${score}/${quizData.length} </h2>
+           <p id="my-id">Du är ${resultText}<p>
            <button onclick="location.reload()">Reload</button>
            `
        }
     }
 
 })
-
 
