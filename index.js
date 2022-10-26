@@ -71,8 +71,8 @@ let optionB = document.querySelector("#option-b")
 let submitBtn = document.querySelector("#submit")
 let currentQuiz = 0
 let score = 0
-let maxscore = 10
 let resultText =""
+let color = ""
 loadQuiz()
 function loadQuiz() {
     deselectAnswers()
@@ -93,16 +93,7 @@ function getSelected() {
     })
     return answer
 }
-function scoreGrad (){
-    const results = document.querySelector("#pId");
-    if (score> maxscore * 0.75){
-        return resultText = "Mycket väl godkänt!"
-    } else if (score> maxscore * 0.5){
-        return resultText = "godkänd"
-    } else if (score< maxscore *0.5){ 
-        return resultText = "underkänd"
-    }
-}
+
 submitBtn.addEventListener('click', () => {
     scoreGrad()
     const answer = getSelected()
@@ -114,16 +105,31 @@ submitBtn.addEventListener('click', () => {
        if(currentQuiz < quizData.length) {
            loadQuiz()
        } else { 
-
            quiz.innerHTML = `
            <h2>Your score is ${score}/${quizData.length} </h2>
-           <p id="pId">Du är ${resultText}<p>
+           <span style='color: ${color};'> Du är: ${resultText}</span>
            <button onclick="location.reload()">Reload</button>
            `
        }
-    }
+    }   
 
 })
+
+
+
+function scoreGrad (){
+    if (score>=7){
+    color = "green"
+        return resultText = "Mycket väl godkänd!"
+    } else if (score>=5){
+    color = "orange"
+        return resultText = "godkänd"
+    } else if (score<5){ 
+    color = "red"
+        return resultText = "underkänd"
+    }
+}
+
 
 
 let darkModeBtn = document.querySelector ("#dark-mode");
