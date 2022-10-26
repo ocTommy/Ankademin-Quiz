@@ -109,7 +109,5 @@ submitBtn.addEventListener('click', () => {
     }
 
 })
-if (score>2) {
-   console.log ("hej");
-}
+
 
